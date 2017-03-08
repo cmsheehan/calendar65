@@ -1,0 +1,15 @@
+body {
+  margin-left: 25px
+}
+
+.addHolidayInfo {
+  padding-left: 25px;
+}
+
+button {
+  height: 30px;
+}
+
+md-content {
+  width: 50%;
+}

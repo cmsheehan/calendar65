@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app="calendar65App">
+  <head>
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="node_modules/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="node_modules/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="node_modules/angular-messages/angular-messages.js"></script>
+    <script type="text/javascript" src="node_modules/jspdf/dist/jspdf.min.js"></script>
+    <script type="text/javascript" src="calendar.js"></script>
+
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="calendar.css">
+  </head>
+
+  <body>
+    <section ng-controller="CalendarCtrl">
+    <div ng-cloak>
+        <h1>65 Day Calendar</h1>
+
+            <h3>School Year<h3>
+            <div layout-gt-xs="row">
+              <md-content layout-padding>
+                <md-datepicker ng-model="startDate" md-placeholder="First day">
+                </md-datepicker>
+                <md-datepicker ng-model="endDate" md-placeholder="Last day">
+                </md-datepicker>
+              </md-content>
+            </div>
+
+            <h3>Add Holiday<h3>
+            <form id="addHoliday" name="calendarForm">
+              <div layout-gt-xs="row">
+                <md-content layout-padding>
+                  <md-input-container class="md-block" flex-gt-xs>
+                    <label>Enter Holiday</label>
+                    <input ng-model="holidayName">
+                  </md-input-container>
+                  <md-datepicker ng-model="holidayDate" md-placeholder="Enter date">
+                  </md-datepicker>
+                  <md-button class="md-raised md-primary" ng-click="addHoliday()" type="submit">Add</md-button>
+                </md-content>
+              </div>
+            </form>
+          </div>
+      <div class="holidayList">
+        <h3>Holidays<h3>
+          <ul>
+            <li ng-repeat="(holiday, date) in holidays">
+              {{ holiday }} - ({{ date }})
+              <md-button ng-click="removeHoliday(holiday)" class="md-raised md-warn">Remove</md-button>
+            </li>
+          </ul>
+      </div>
+
+      <md-button ng-click="generatePDF()" class="md-raised md-primary">Generate PDF</md-button>
+    </section>
+  </body>
+</html>
